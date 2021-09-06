@@ -1,0 +1,6 @@
+[submodule "DEV---University-Website"]
+	path = DEV---University-Website
+	url = https://github.com/paulAlexSerban/DEV---University-Website.git
+[submodule "SRC---University-Website"]
+	path = SRC---University-Website
+	url = https://github.com/paulAlexSerban/SRC---University-Website.git
