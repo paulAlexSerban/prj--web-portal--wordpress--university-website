@@ -1,0 +1,12 @@
+.Rbuildignore
+.deploy-wordpress-localhost.Rproj
+.Rproj.user
+.Rhistory
+.RData
+.DS_Store
+logs/nginx/*
+!logs/nginx/.keep
+_trash
+*.Rproj
+wordpress
+node_modules
