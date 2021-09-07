@@ -12,9 +12,15 @@
     - run the build tasks for the desired purpose
     - NOTE - the production build takes more time
 
-* make start
-* make stop
-* make clean
+* `make install-project`
+    - builds and starts development containers, and if there is any database it will save the backup in case of issues and then restore inject it into you project
+
+* make clean-project
+    - creates a backup of the database
+    - makes a backup of the projects edits such as installed plugins and uploads
+    - stops the containers
+    - removes al volumes
+    - deletes dist files 
 
 ## Git Strategy
 > this project is using *Git Submodules* as it has been spit in multiple projects
