@@ -25,3 +25,5 @@
 ## Git Strategy
 > this project is using *Git Submodules* as it has been spit in multiple projects
 * to clone it run `git clone --recurse-submodules https://...`
+* to push the changes run `git push --recurse-submodules=on-demand`
+    - this command will push all changes including submodules
