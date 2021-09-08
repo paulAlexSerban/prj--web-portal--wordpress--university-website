@@ -34,29 +34,30 @@ copy-src:
 	fi \
 
 backup-edits:
-	cp -rv ./${WP_CONTENT}/themes/${PROJECT_NAME}/plugins ./${SRC_DIR}
-	cp -rv ./${WP_CONTENT}/themes/${PROJECT_NAME}/uploads ./${SRC_DIR}
+	cp -rv ./${WP_CONTENT}/themes/${PROJECT_NAME}/plugins ./${WP_SRC_DIR}
+	cp -rv ./${WP_CONTENT}/themes/${PROJECT_NAME}/uploads ./${SRC_DIR}/assets
 
 #################### LOCAL VAIABLES
 WP_CONTENT=${DEV_DIR}/dist/wordpress/wp-content
+WP_SRC_DIR=${SRC_DIR}/wordpress
 
 ####################  FUNCTIONS
 copy_files:
-	cp -rv ./${SRC_DIR}/required/* ./${WP_CONTENT}/themes/${PROJECT_NAME}
-	cp -rv ./${SRC_DIR}/templates/* ./${WP_CONTENT}/themes/${PROJECT_NAME}
-	cp -rv ./${SRC_DIR}/mu-plugins ./${WP_CONTENT}/themes/${PROJECT_NAME}
-	cp -rv ./${SRC_DIR}/includes ./${WP_CONTENT}/themes/${PROJECT_NAME}
-	cp -rv ./${SRC_DIR}/plugins ./${WP_CONTENT}/themes/${PROJECT_NAME}
-	cp -rv ./${SRC_DIR}/uploads ./${WP_CONTENT}/themes/${PROJECT_NAME}
+	cp -rv ./${WP_SRC_DIR}/includes ./${WP_CONTENT}/themes/${PROJECT_NAME}
+	cp -rv ./${WP_SRC_DIR}/mu-plugins ./${WP_CONTENT}/themes/${PROJECT_NAME}
+		cp -rv ./${WP_SRC_DIR}/plugins ./${WP_CONTENT}/themes/${PROJECT_NAME}
+	cp -rv ./${WP_SRC_DIR}/required/* ./${WP_CONTENT}/themes/${PROJECT_NAME}
+	cp -rv ./${WP_SRC_DIR}/templates/* ./${WP_CONTENT}/themes/${PROJECT_NAME}
+	cp -rv ./${SRC_DIR}/assets/uploads ./${WP_CONTENT}/themes/${PROJECT_NAME}
 
 backup-db: save-bkp
-	docker exec ${COMPOSE_PROJECT_NAME}_mysql /usr/bin/mysqldump -u root --password=${DATABASE_PASSWORD} ${COMPOSE_PROJECT_NAME} > ${SRC_DIR}/db/main.backup.sql
+	docker exec ${COMPOSE_PROJECT_NAME}_mysql /usr/bin/mysqldump -u root --password=${DATABASE_PASSWORD} ${COMPOSE_PROJECT_NAME} > ${WP_SRC_DIR}/db/main.backup.sql
 
 copy-db-bkp:
-	sudo cp -rv ./${SRC_DIR}/db/main.backup.sql ./${DEV_DIR}/dist/mysql/
+	sudo cp -rv ./${WP_SRC_DIR}/db/main.backup.sql ./${DEV_DIR}/dist/mysql/
 
 restore-db: 
-	@if [ -f ${SRC_DIR}/db/main.backup.sql ]; then \
+	@if [ -f ${WP_SRC_DIR}/db/main.backup.sql ]; then \
 		echo 'RESTORING database'; \
 		sudo make copy-db-bkp; \
 		docker exec -it ${COMPOSE_PROJECT_NAME}_mysql bash -c 'mysql -u root --password=${DATABASE_PASSWORD} ${COMPOSE_PROJECT_NAME} < /var/lib/mysql/backup.sql'; \
@@ -66,9 +67,9 @@ restore-db:
 	fi \
 
 save-bkp:
-	@if [ -f ${SRC_DIR}/db/main.backup.sql ]; then \
+	@if [ -f ${WP_SRC_DIR}/db/main.backup.sql ]; then \
 		echo 'SAVING database backup'; \
-		sudo cp -rv ${SRC_DIR}/db/main.backup.sql ${SRC_DIR}/db/saved.backup.`date +%Y-%m-%d---%T`.sql; \
+		sudo cp -rv ${WP_SRC_DIR}/db/main.backup.sql ${WP_SRC_DIR}/db/saved.backup.`date +%Y-%m-%d---%T`.sql; \
 		echo 'SAVED database backup';\
 	else \
 		echo 'NO database backup to save'; \
