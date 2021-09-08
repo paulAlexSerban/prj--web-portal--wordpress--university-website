@@ -8,5 +8,4 @@ logs/nginx/*
 !logs/nginx/.keep
 _trash
 *.Rproj
-wordpress
 node_modules
