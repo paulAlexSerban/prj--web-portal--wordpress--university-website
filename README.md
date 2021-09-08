@@ -27,3 +27,7 @@
 * to clone it run `git clone --recurse-submodules https://...`
 * to push the changes run `git push --recurse-submodules=on-demand`
     - this command will push all changes including submodules
+
+### DEV Notes
+* if using linux as development enviorment
+* install `inotofywait` with `sudo apt install inotify-tools`

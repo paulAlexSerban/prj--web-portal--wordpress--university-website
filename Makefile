@@ -45,7 +45,7 @@ WP_SRC_DIR=${SRC_DIR}/wordpress
 copy_files:
 	cp -rv ./${WP_SRC_DIR}/includes ./${WP_CONTENT}/themes/${PROJECT_NAME}
 	cp -rv ./${WP_SRC_DIR}/mu-plugins ./${WP_CONTENT}/themes/${PROJECT_NAME}
-		cp -rv ./${WP_SRC_DIR}/plugins ./${WP_CONTENT}/themes/${PROJECT_NAME}
+	cp -rv ./${WP_SRC_DIR}/plugins ./${WP_CONTENT}/themes/${PROJECT_NAME}
 	cp -rv ./${WP_SRC_DIR}/required/* ./${WP_CONTENT}/themes/${PROJECT_NAME}
 	cp -rv ./${WP_SRC_DIR}/templates/* ./${WP_CONTENT}/themes/${PROJECT_NAME}
 	cp -rv ./${SRC_DIR}/assets/uploads ./${WP_CONTENT}/themes/${PROJECT_NAME}
@@ -74,3 +74,9 @@ save-bkp:
 	else \
 		echo 'NO database backup to save'; \
 	fi \
+
+watch-wordpress:
+	@while inotifywait -re modify SRC---University-Website/wordpress/templates; do \
+  	cp -rv ./${WP_SRC_DIR}/templates/* ./${WP_CONTENT}/themes/${PROJECT_NAME}; \
+	done
+
