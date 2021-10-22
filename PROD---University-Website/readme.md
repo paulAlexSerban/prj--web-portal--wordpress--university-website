@@ -1,2 +1,0 @@
-- this directory will contain production ready builds
-- it will also become a separate repo and submodule of the current repo
