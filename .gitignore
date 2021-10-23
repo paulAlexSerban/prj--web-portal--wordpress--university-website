@@ -9,3 +9,4 @@ logs/nginx/*
 _trash
 *.Rproj
 node_modules
+build

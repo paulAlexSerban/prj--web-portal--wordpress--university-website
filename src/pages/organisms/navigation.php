@@ -1,0 +1,1 @@
+This organism/partial template will import all footer organism files and render them according to some conditions (page type, post type, etc.)
