@@ -1,69 +1,119 @@
-function copy_required () {
-  cp -rv $ROOT_DIR/src/required/* $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+#!/bin/bash
+DISTRIBUTION_ASSEST_TO_WATCH=$ROOT_DIR/src/dist
+THEME_BUILD_TARGET=$ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+
+function copy_fe_assets-src-to-build () {
+  echo " "
+  echo " COPY front-end assets files from ./src/dist/assets to ./build/*/themes/$PROJECT_NAME/assets "
+  echo " "
+  rsync -rv --mkpath $DISTRIBUTION_ASSEST_TO_WATCH/*/* $THEME_BUILD_TARGET/assets --info=progress2
 }
 
-function copy_includes () {
-  cp -rv $ROOT_DIR/src/includes $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+function watch-dist-assets () {
+  fswatch -o -l 5 $DISTRIBUTION_ASSEST_TO_WATCH/assets | while read num 
+  do 
+		copy_fe_assets-src-to-build
+  done
 }
 
-function copy_must-use-plugins () {
-  cp -rv $ROOT_DIR/src/mu-plugins $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+REQUIRED_FILES=$ROOT_DIR/src/required
+function copy_required-src-to-build () {
+  echo " "
+  echo " COPY required theme files from ./src/required/* to ./build/*/themes/$PROJECT_NAME "
+  echo " "
+  rsync -rv --mkpath $REQUIRED_FILES/* $THEME_BUILD_TARGET --info=progress2
 }
 
-function copy_plugins () {
-  cp -rv $ROOT_DIR/src/plugins $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+function watch-required-files () {
+  fswatch -o -l 5 $REQUIRED_FILES/* | while read num 
+  do 
+		copy_required-src-to-build
+  done
 }
 
-function copy_templates () {
-  cp -rv $ROOT_DIR/src/templates/* $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+function copy_includes-src-to-build () {
+  echo " "
+  echo " COPY includes files from ./src/includes to ./build/*/themes/$PROJECT_NAME "
+  echo " "
+  rsync -rv --mkpath $ROOT_DIR/src/includes $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME --info=progress2
 }
 
-function copy_uploads () {
-  cp -rv $ROOT_DIR/assets/uploads $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+function watch-includes () {
+  echo 'this should watch src/includes and keep it in sync with build/*/includes -<-<  to implement when needed'
+  copy_includes-src-to-build
 }
 
-
-function copy_files () {
-  copy_required
-  copy_includes
-  copy_must-use-plugins
-  copy_plugins
-  copy_templates
-  copy_uploads
+function copy_must-use-plugins-src-to-build () {
+  rsync -rv --mkpath $ROOT_DIR/src/plugins/mu-plugins $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME --info=progress2
 }
 
-function copy-source-to-build-files () {
-  	if [ -d $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME ]; then 
-    echo " <----> [ START ] <----> COPY $PROJECT_NAME theme required files"
-    echo " " 
-		copy_files
-    echo " "
-    echo " <----> [ DONE ] <----> COPY $PROJECT_NAME theme required files"
-	else 
-		echo " <----> [CREATED new theme directory <---->]"
-		mkdir -p $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
-		copy_files
-	fi \
+function copy_plugins-src-to-build () {
+  rsync -rv --mkpath $ROOT_DIR/src/plugins/vendor-plugins/* $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME/plugins/ --info=progress2
 }
 
-function copy-test () {
-  rsync -rv $TEMPLATE_FILES/*/* $THEME_BUILD_TARGET --info=progress2
-  rsync -rv $COMPONENT_FILES/*/*/*.php $THEME_BUILD_TARGET --info=progress2
+function watch-plugins () {
+  echo 'this should watch src/plugins and keep it in sync with build/*/plugins and build/*/mu-plugins -<-<  to implement when needed'
+  copy_must-use-plugins-src-to-build
+  copy_plugins-src-to-build
 }
 
-function pre-site () {
-  echo "execute processes needed prior to the actual project site generation - clean dist and build/*/*/wordpress"
+TEMPLATE_FILES=$ROOT_DIR/src/pages
+function copy_templates-src-to-build () {
+  rsync -rv --mkpath $TEMPLATE_FILES/*/*.php $THEME_BUILD_TARGET --info=progress2
 }
 
-function site () {
-  echo "generate the project's site - fe-build compilation to dist"
+function watch-template-files () {
+  fswatch -o -l 5 $TEMPLATE_FILES/*/*.php | while read num 
+  do 
+		copy_templates-src-to-build
+  done
 }
 
-function post-site () {
-  echo "execute processes needed to finalize the site generation, and to prepare for site deployment"
+function copy_uploads-src-to-build () {
+  rsync -rv --mkpath $ROOT_DIR/assets/uploads $ROOT_DIR/build/wordpress/wp-content --info=progress2
 }
 
-function site-deploy () {
-  echo "deploy the generated site files to the build/*/*/wordpress"
+COMPONENT_FILES=$ROOT_DIR/src/ux-ui/components
+function copy-components-src-to-build () {
+  rsync -rv --mkpath $COMPONENT_FILES/*/*/*.php $THEME_BUILD_TARGET --info=progress2
 }
+
+function watch-components () {
+  fswatch -xrv -l 5 $COMPONENT_FILES/*/*/*.php | while read num 
+  do 
+		copy-components-src-to-build
+  done
+}
+
+function copy_src_files () {
+  copy_fe_assets-src-to-build
+  copy_required-src-to-build
+  copy_includes-src-to-build
+  copy_must-use-plugins-src-to-build
+  copy_plugins-src-to-build
+  copy_templates-src-to-build
+  copy_uploads-src-to-build
+  copy-components-src-to-build
+
+}
+
+# not needed because rsync --mkpath solves the problem
+
+# function copy-source-to-build-files () {
+#   	if [ -d $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME ]; then 
+#     echo " <----> [ START ] <----> COPY $PROJECT_NAME theme required files"
+#     echo " " 
+# 		copy_src_files
+#     echo " "
+#     echo " <----> [ DONE ] <----> COPY $PROJECT_NAME theme required files"
+# 	else 
+# 		echo " <----> [CREATED new theme directory <---->]"
+# 		mkdir -p $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME
+# 		copy_src_files
+# 	fi \
+# }
+
+function uni-web-start-watchers () {
+  watch-dist-assets | watch-template-files | watch-required-files | watch-components
+} 
 
