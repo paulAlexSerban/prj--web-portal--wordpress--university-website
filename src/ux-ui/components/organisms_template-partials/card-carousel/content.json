@@ -1,0 +1,6 @@
+{
+  "php": "card-carousel.organism.php",
+  "javascript": "card-carousel.organism.javascript",
+  "style": "card-carousel.organism.scss",
+  "imports": ["card"]
+}
