@@ -1,3 +1,1 @@
-<?php
-echo "this index.php page";
-?>
+<h1><?php bloginfo('name'); ?></h1>
