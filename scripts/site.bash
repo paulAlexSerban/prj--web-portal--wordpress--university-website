@@ -49,8 +49,13 @@ function copy_must-use-plugins-src-to-build () {
   rsync -rv --mkpath $ROOT_DIR/src/plugins/mu-plugins $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME --info=progress2
 }
 
+function cleaning-pre-intalled-plugins () {
+  echo "cleaning presintalled plugins"
+  rm -rf $ROOT_DIR/build/wordpress/wp-content/plugins/*
+}
+
 function copy_plugins-src-to-build () {
-  rsync -rv --mkpath $ROOT_DIR/src/plugins/vendor-plugins/* $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME/plugins/ --info=progress2
+  rsync -rv --mkpath $ROOT_DIR/src/plugins/vendor-plugins/* $ROOT_DIR/build/wordpress/wp-content/plugins/ --info=progress2
 }
 
 function watch-plugins () {
@@ -92,6 +97,7 @@ function copy_src_files () {
   copy_required-src-to-build
   copy_includes-src-to-build
   copy_must-use-plugins-src-to-build
+  cleaning-pre-intalled-plugins
   copy_plugins-src-to-build
   copy_templates-src-to-build
   copy_uploads-src-to-build
