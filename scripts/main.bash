@@ -26,7 +26,7 @@ function uni-web-deploy () {
 
 function uni-web-pre-clean () {
   backup-db
-  backup-plugins-and-uploads
+  backup-updated-plugins
 }
 
 function uni-web-clean () {

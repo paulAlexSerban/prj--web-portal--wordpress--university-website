@@ -1,19 +1,18 @@
 #!/bin/bash
 source ~/Desktop/MY_projects/University-Website/.env
-UPDATED_PLUGINS=$ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME/plugins
+UPDATED_PLUGINS=$ROOT_DIR/build/wordpress/wp-content/plugins
 UPDATED_UPLOADS=$ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME/uploads
 SRC_PLUGINS=$ROOT_DIR/src/plugins/vendor-plugins
 ASSETS_DIR=$ROOT_DIR/assets
 
-function backup-plugins-and-uploads () {
-  echo " ------- [ START ] <----> [ backup-plugins-and-uploads ] -------- "
-  echo " "
-  rsync -rv $UPDATED_PLUGINS/* $SRC_PLUGINS --info=progress2
-  echo " START BACKUP Plugins"
-	rsync -rv $UPDATED_UPLOADS $ASSETS_DIR --info=progress2
-  echo " START BACKUP Assets"
-  echo " "
-  echo " ------- [ DONE ] <----> [ backup-plugins-and-uploads ] -------- "
+function backup-updated-plugins () {
+	echo " - backup updated plugins from ./build to ./src"
+  rsync -rv --mkpath $UPDATED_PLUGINS/* $SRC_PLUGINS --info=progress2
+}
+
+function backup-updated-uploads () {
+	echo " - backup updated uploads (images, etc.)"
+	rsync -rv --mkpath $UPDATED_UPLOADS $ASSETS_DIR --info=progress2
 }
 
 function copy-db-bkp-to-build () {
