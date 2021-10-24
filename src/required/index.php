@@ -1,1 +1,3 @@
-aergasdvarg sdfgasdvasva
+<?php
+echo "this index.php page";
+?>

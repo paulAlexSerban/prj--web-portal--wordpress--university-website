@@ -21,7 +21,9 @@ function copy_required-src-to-build () {
   echo " "
   echo " COPY required theme files from ./src/required/* to ./build/*/themes/$PROJECT_NAME "
   echo " "
-  rsync -rv --mkpath $REQUIRED_FILES/* $THEME_BUILD_TARGET --info=progress2
+  rsync -rv --mkpath $REQUIRED_FILES/style.css $THEME_BUILD_TARGET/ --info=progress2
+  rsync -rv --mkpath $REQUIRED_FILES/index.php $THEME_BUILD_TARGET/ --info=progress2
+  rsync -rv --mkpath $REQUIRED_FILES/screenshot.png $THEME_BUILD_TARGET/ --info=progress2
 }
 
 function watch-required-files () {
@@ -114,6 +116,8 @@ function copy_src_files () {
 # }
 
 function uni-web-start-watchers () {
-  watch-dist-assets | watch-template-files | watch-required-files | watch-components
+  # add watchers as you get developing
+  # for example the first steps developin a new theme needs only the required files
+  watch-required-files
 } 
 
