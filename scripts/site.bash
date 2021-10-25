@@ -24,12 +24,14 @@ function copy_required-src-to-build () {
   rsync -rv --mkpath $REQUIRED_FILES/style.css $THEME_BUILD_TARGET/ --info=progress2
   rsync -rv --mkpath $REQUIRED_FILES/index.php $THEME_BUILD_TARGET/ --info=progress2
   rsync -rv --mkpath $REQUIRED_FILES/screenshot.png $THEME_BUILD_TARGET/ --info=progress2
+  rsync -rv --mkpath $REQUIRED_FILES/functions.php $THEME_BUILD_TARGET/ --info=progress2
 }
 
 function watch-required-files () {
-  fswatch -xnr -l 2 $REQUIRED_FILES/* | while read num 
+  fswatch -xnr -l 2 $REQUIRED_FILES/* | while read num event
   do 
-		copy_required-src-to-build
+  rsync -rv --mkpath $num $THEME_BUILD_TARGET/ --info=progress2
+		# copy_required-src-to-build
   done
 }
 
@@ -70,9 +72,10 @@ function copy_templates-src-to-build () {
 }
 
 function watch-template-files () {
-  fswatch -xnr -l 2 $TEMPLATE_FILES/*/*.php | while read num 
+  fswatch -xnr -l 2 $TEMPLATE_FILES/*/*.php | while read num event
   do 
-		copy_templates-src-to-build
+    rsync -rv --mkpath $num $THEME_BUILD_TARGET/ --info=progress2
+		# copy_templates-src-to-build
   done
 }
 
