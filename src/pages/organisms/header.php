@@ -1,3 +1,7 @@
-<header>
-  This is the header
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <?php wp_head(); ?>
+</head>
+<body>
+
