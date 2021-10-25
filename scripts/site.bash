@@ -27,7 +27,7 @@ function copy_required-src-to-build () {
 }
 
 function watch-required-files () {
-  fswatch -o -l 5 $REQUIRED_FILES/* | while read num 
+  fswatch -xnr -l 2 $REQUIRED_FILES/* | while read num 
   do 
 		copy_required-src-to-build
   done
@@ -70,7 +70,7 @@ function copy_templates-src-to-build () {
 }
 
 function watch-template-files () {
-  fswatch -o -l 5 $TEMPLATE_FILES/*/*.php | while read num 
+  fswatch -xnr -l 2 $TEMPLATE_FILES/*/*.php | while read num 
   do 
 		copy_templates-src-to-build
   done
@@ -124,6 +124,10 @@ function copy_src_files () {
 function uni-web-start-watchers () {
   # add watchers as you get developing
   # for example the first steps developin a new theme needs only the required files
-  watch-required-files
+  watch-required-files & watch-template-files
 } 
 
+function uni-web-stop-warchers () {
+  ps ax | grep fswatch
+  killall fswatch
+}
