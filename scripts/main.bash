@@ -4,6 +4,7 @@ source ~/Desktop/MY_projects/University-Website/scripts/install.bash
 source ~/Desktop/MY_projects/University-Website/scripts/site.bash
 source ~/Desktop/MY_projects/University-Website/scripts/backup.bash
 source ~/Desktop/MY_projects/University-Website/scripts/clean.bash
+source ~/Desktop/MY_projects/University-Website/scripts/watch.bash
 
 function uni-web-install () {
   uni-web-install-docker-project
