@@ -9,4 +9,5 @@ logs/nginx/*
 _trash
 *.Rproj
 node_modules
-build
+build/wordpress
+build/mysql
