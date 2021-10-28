@@ -8,7 +8,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME:-wordpress}
     volumes:
       - ./php/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
-      - ${WORDPRESS_DATA_DIR:-../../build/wordpress}:/var/www/html
+      - ${WORDPRESS_DATA_DIR:-../build/wordpress}:/var/www/html
     environment:
       - WORDPRESS_DB_NAME=${COMPOSE_PROJECT_NAME:-wordpress}
       - WORDPRESS_TABLE_PREFIX=${WORDPRESS_TABLE_PREFIX:-wp_}
@@ -28,7 +28,7 @@ services:
     image: mariadb:${MARIADB_VERSION:-latest}
     container_name: ${COMPOSE_PROJECT_NAME}_mysql
     volumes:
-      - ../../build/mysql:/var/lib/mysql
+      - ../build/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD:-password}
       - MYSQL_USER=${DATABASE_USER:-root}

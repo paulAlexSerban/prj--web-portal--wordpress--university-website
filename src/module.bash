@@ -1,42 +1,49 @@
 #!bin/bash 
 . config/config.dev.env
 
-
-
-
 function copy_required-src-to-build () {
+  echo -e "${BLUE} --> [ COPY ] required files ${GREEN} "
   rsync -rv --mkpath $REQUIRED_FILES/* $WORDPRESS_THEME_TARGET/ --info=progress2
 }
 
 function copy_templates-src-to-build () {
+  echo -e "${BLUE} --> [ COPY ] template files ${GREEN} "
   rsync -rv --mkpath $TEMPLATE_FILES/*/*.php $WORDPRESS_THEME_TARGET --info=progress2
 }
 
 function copy-components-src-to-build () {
+  echo -e "${BLUE} --> [ COPY ] component files ${GREEN} "
   rsync -rv --mkpath $COMPONENT_FILES/*/*/*.php $WORDPRESS_THEME_TARGET --info=progress2
 }
 
 function copy_fe_assets-src-to-build () {
+  echo -e "${BLUE} --> [ COPY ] assets/distribution files ${GREEN} "
   rsync -rv --mkpath $DISTRIBUTION_ASSEST_TO_WATCH/*/* $WORDPRESS_THEME_TARGET/assets --info=progress2
 }
 
 function copy_must-use-plugins-src-to-build () {
+  echo -e "${BLUE} --> [ COPY ] must-use plugin files ${GREEN} "
   rsync -rv --mkpath $ROOT_DIR/src/plugins/mu-plugins $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME --info=progress2
 }
 
 function copy_plugins-src-to-build () {
+  echo -e "${BLUE} --> [ COPY ] vendor plugin files ${GREEN} "
   rsync -rv --mkpath $ROOT_DIR/src/plugins/vendor-plugins/* $ROOT_DIR/build/wordpress/wp-content/plugins/ --info=progress2
 }
 
 function copy_includes-src-to-build () {
+  echo -e "${BLUE} --> [ COPY ] includes files ${GREEN} "
   rsync -rv --mkpath $ROOT_DIR/src/includes $ROOT_DIR/build/wordpress/wp-content/themes/$PROJECT_NAME --info=progress2
 }
 
-function cleaning-pre-intalled-plugins () {
-  rm -rf $ROOT_DIR/build/wordpress/wp-content/plugins/*
+function pre-install () {
+  echo -e "${BLUE} --> [ PRE-INSTALL ] ${GREEN} "
+  npm install --prefix $SRC_DIR
+  # npm run dev-build
 }
 
-function copy_src_files () {
+function install-src-to-build () {
+  echo -e "${BLUE} --> [ INSTALL SRC in BUILD ] ${GREEN} "
   copy_required-src-to-build
   copy_templates-src-to-build
   copy-components-src-to-build
@@ -48,17 +55,14 @@ function copy_src_files () {
 }
 
 function install () {
-  npm install --prefix $SRC_DIR
-  cleaning-pre-intalled-plugins
-  copy_required-src-to-build
+  pre-install
+  install-src-to-build
+  echo -e "${BLUE} --> [ SRC INSTALL DONE ] ${GREEN} "
 }
 
 function uninstall () {
   echo " - backup updated plugins from ./build to ./src"
   rsync -rv --mkpath $WORDPRESS_PLUGINS/* $SRC_VENDOR_PLUGINS --info=progress2
-
-  echo " - remove 'node-modules' from ./src"
-  rm -rfv $SRC_DIR/node_modules
 }
 
 $1

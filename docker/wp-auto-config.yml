@@ -8,7 +8,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}_wp_autoconfig
     entrypoint: sh -c "/wait && make -f /scripts/Makefile"
     volumes:
-      - ${WORDPRESS_DATA_DIR:-../../dist/wordpress}:/var/www/html
+      - ${WORDPRESS_DATA_DIR:-../dist/wordpress}:/var/www/html
     working_dir: /var/www/html
     depends_on:
       - wordpress
