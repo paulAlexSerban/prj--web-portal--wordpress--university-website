@@ -18,7 +18,7 @@ function copy-components-src-to-build () {
 
 function copy_fe_assets-src-to-build () {
   echo -e "${BLUE} --> [ COPY ] assets/distribution files ${GREEN} "
-  rsync -rv --mkpath $DISTRIBUTION_ASSEST_TO_WATCH/*/* $WORDPRESS_THEME_TARGET/assets --info=progress2
+  rsync -rv --mkpath $DISTRIBUTION_ASSETS_TO_WATCH/*/* $WORDPRESS_THEME_TARGET/assets --info=progress2
 }
 
 function copy_must-use-plugins-src-to-build () {
@@ -39,7 +39,7 @@ function copy_includes-src-to-build () {
 function pre-install () {
   echo -e "${BLUE} --> [ PRE-INSTALL ] ${GREEN} "
   npm install --prefix $SRC_DIR
-  # npm run dev-build
+  npm run build:dev
 }
 
 function install-src-to-build () {
@@ -65,7 +65,76 @@ function uninstall () {
   rsync -rv --mkpath $WORDPRESS_PLUGINS/* $SRC_VENDOR_PLUGINS --info=progress2
 }
 
+# watchers configuration
+
+# DISTRIBUTION_ASSETS_TO_WATCH=$ROOT_DIR/src/dist/assets
+# THEME_BUILD_TARGET => WORDPRESS_THEME_TARGET 
+# TEMPLATE_FILES=$ROOT_DIR/src/pages
+COMPONENT_FILES=$ROOT_DIR/src/ux-ui/components
+
+function watch-required-files () {
+  fswatch -xnr -l 2 $REQUIRED_FILES/* | while read num event
+  do 
+    rsync -rv --mkpath $num $WORDPRESS_THEME_TARGET/ --info=progress2
+  done
+}
+
+function watch-dist-assets () {
+  fswatch -xnr -l 2 $DISTRIBUTION_ASSETS_TO_WATCH/assets | while read num event
+  do 
+    rsync -rv --mkpath $num $THEME_BUILD_TARGET/assets --info=progress2
+  done
+}
+
+function watch-template-files () {
+  fswatch -xnr -l 2 $TEMPLATE_FILES/*/*.php | while read num event
+  do 
+    rsync -rv --mkpath $num $THEME_BUILD_TARGET/ --info=progress2
+  done
+}
+
+function watch-components () {
+  fswatch -xrv -l 2 $COMPONENT_FILES/*/*/*.php | while read num event 
+  do 
+    rsync -rv --mkpath $num $THEME_BUILD_TARGET --info=progress2
+  done
+}
+
+function watch-dev () {
+  watch-required-files & watch-dist-assets & watch-template-files & watch-components & npm run watch
+}
+
 $1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # not needed because rsync --mkpath solves the problem
 
