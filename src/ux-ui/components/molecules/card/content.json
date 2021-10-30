@@ -1,6 +1,0 @@
-{
-  "php":"card.molecule.php",
-  "javascript":"card.molecule.js",
-  "style":"card.molecule.style",
-  "imports": ["image", "link", "text", "content"]
-}

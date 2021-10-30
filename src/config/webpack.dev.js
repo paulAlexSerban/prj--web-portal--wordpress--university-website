@@ -12,7 +12,8 @@ const getEntries = (path) =>
   }, {});
 
 let moleculesPaths = {...getEntries("./ux-ui/components/*/*/*.molecule.js")}
-let organismPaths = {...getEntries("./ux-ui/components/*/*/*.organisms.js")}
+let organismPaths = {...getEntries("./ux-ui/components/*/*/*.organism.js")};
+let templatePaths = {...getEntries("./ux-ui/templates/*/*.template.js")};
 
 const cssRules = {
   test: /\.(css|sass|scss)$/,
@@ -37,33 +38,23 @@ const cssRules = {
 
 const jsRules = {
     test: /\.m?js$/,
-    exclude: /(node_modules|bower_components)/,
+    exclude: /(node_modules)/,
     use: {
       loader: "babel-loader",
       options: {
-        presets: ["@babel/preset-env"],
+        presets: ["@babel/env"],
+        plugins: ["@babel/plugin-proposal-class-properties"],
       },
     },
   }
 
 module.exports = {
-  entry: {...moleculesPaths, ...organismPaths},
+  entry: {...templatePaths},
   output: {
     path: path.resolve(__dirname, "../dist/assets"),
-    filename: "scripts/[name].script.js",
+    filename: "scripts/[name].script.js"
   },
-  mode: "development",
-  optimization: {
-    minimizer: [
-      (compiler) => {
-        const TerserPlugin = require('terser-webpack-plugin');
-        new TerserPlugin({
-          parallel: 4,
-          extractComments: true,
-        }).apply(compiler);
-      },
-    ],
-  },
+  mode: "production",
   module: {
     rules: [
       jsRules,

@@ -80,16 +80,16 @@ function watch-required-files () {
 }
 
 function watch-dist-assets () {
-  fswatch -xnr -l 2 $DISTRIBUTION_ASSETS_TO_WATCH/assets | while read num event
+  fswatch -xnr -o 2 $DISTRIBUTION_ASSETS_TO_WATCH/assets/* | while read num event
   do 
-    rsync -rv --mkpath $num $THEME_BUILD_TARGET/assets --info=progress2
+    copy_fe_assets-src-to-build
   done
 }
 
 function watch-template-files () {
-  fswatch -xnr -l 2 $TEMPLATE_FILES/*/*.php | while read num event
+  fswatch -xnr  -l 2 $TEMPLATE_FILES/*/*.php | while read num event
   do 
-    rsync -rv --mkpath $num $THEME_BUILD_TARGET/ --info=progress2
+    rsync -xnr --mkpath $num $THEME_BUILD_TARGET/ --info=progress2
   done
 }
 
@@ -101,7 +101,7 @@ function watch-components () {
 }
 
 function watch-dev () {
-  watch-required-files & watch-dist-assets & watch-template-files & watch-components & npm run watch
+  watch-required-files & watch-dist-assets & watch-template-files & watch-components
 }
 
 $1
