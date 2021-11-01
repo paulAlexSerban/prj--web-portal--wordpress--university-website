@@ -20,7 +20,7 @@
 
   @include e('content') {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1.4rem;
     color: adjust-color($beige, $lightness: -45%, $saturation: -33%);
   }
 
