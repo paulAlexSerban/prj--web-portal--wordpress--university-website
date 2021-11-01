@@ -974,41 +974,37 @@ body.login {
 */
 .main-navigation {
   padding-top: 2px; }
-  .main-navigation ul {
-    padding: 0;
-    margin: 0; }
-  .main-navigation ul:before,
-  .main-navigation ul:after {
-    content: " ";
-    display: table; }
-  .main-navigation ul:after {
-    clear: both; }
   @media (min-width: 960px) {
     .main-navigation {
       float: left;
       margin-right: 20px; } }
-
-.main-navigation li {
-  list-style: none; }
-  @media (min-width: 960px) {
-    .main-navigation li {
-      float: left;
-      padding-left: 20px; } }
-
-.main-navigation a {
-  display: block;
-  padding: 10px 20px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 300; }
-  @media (min-width: 960px) {
-    .main-navigation a {
-      display: inline-block;
-      padding: 0; } }
-
-.main-navigation .current-menu-item a,
-.main-navigation a:hover {
-  color: #FAF0CA; }
+  .main-navigation__menu-list {
+    padding: 0;
+    margin: 0; }
+    .main-navigation__menu-list:before, .main-navigation__menu-list:after {
+      content: " ";
+      display: table; }
+    .main-navigation__menu-list:after {
+      clear: both; }
+  .main-navigation__menu-item {
+    list-style: none; }
+    @media (min-width: 960px) {
+      .main-navigation__menu-item {
+        float: left;
+        padding-left: 20px; } }
+    .main-navigation__menu-item a {
+      display: block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 300; }
+      @media (min-width: 960px) {
+        .main-navigation__menu-item a {
+          display: inline-block;
+          padding: 0; } }
+    .main-navigation__menu-item.current-menu-item a,
+    .main-navigation__menu-item.current-menu-item a:hover {
+      color: #FAF0CA; }
 
 /**
 * used only in University website

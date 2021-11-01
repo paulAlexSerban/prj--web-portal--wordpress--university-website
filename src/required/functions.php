@@ -12,6 +12,17 @@ add_action('wp_enqueue_scripts', 'university_files');
 
 function university_features () {
   add_theme_support('title-tag');
+  register_nav_menu('headerMenuLocation', 'Header Menu Location');
+  register_nav_menu('footerLocationOne', 'Footer Location One');
+  register_nav_menu('footerLocationTwo', 'Footer Location Two');
 }
 
 add_action('after_setup_theme', 'university_features');
+
+function add_additional_class_on_li($classes, $item, $args) {
+  if(isset($args->add_li_class)) {
+      $classes[] = $args->add_li_class;
+  }
+  return $classes;
+}
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
