@@ -1,14 +1,10 @@
 @import '../../../abstracts/abstracts.scss';
 
 .search-overlay {
+  @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0, $z-index: search);
+
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 110;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-color: rgba(255, 255, 255, 0.96);
   visibility: hidden;
   opacity: 0;

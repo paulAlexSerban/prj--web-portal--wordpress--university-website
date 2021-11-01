@@ -37,8 +37,8 @@
 }
 
 .school-logo-text {
-  position: relative;
-  z-index: 20;
+  @include relative($z-index: schoolLogo);
+
   margin: 0;
   font-size: 1.75rem;
   font-weight: 100;
@@ -300,15 +300,15 @@
 }
 
 .like-box .fa-heart-o {
+  @include absolute($left: 10px);
+
   transition: all 0.35s ease-out;
-  position: absolute;
-  left: 10px;
 }
 
 .like-box .fa-heart {
-  left: 10px;
+  @include absolute($left: 10px);
+
   transition: all 0.4s ease-out;
-  position: absolute;
   visibility: hidden;
   transform: scale(0.2);
   opacity: 0;

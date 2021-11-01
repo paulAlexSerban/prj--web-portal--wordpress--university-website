@@ -32,13 +32,12 @@
   }
 
   &__name {
+    @include absolute($right: 0, $left: 0, $bottom: 0);
+
     font-weight: 300;
     font-size: 0.9rem;
     position: absolute;
-    bottom: 0;
     color: #fff;
-    left: 0;
-    right: 0;
     padding: 3px 10px;
     background-color: adjust-color($darkOrange, $alpha: -0.15, $lightness: -9%, $saturation: -6%);
   }

@@ -1,10 +1,10 @@
 @import '../../../abstracts/abstracts.scss';
 
 .page-links {
-  position: relative;
-  z-index: 1;
+  @include relative($z-index: pageLinks);
   background-color: $beige;
   margin: 0 0 40px 0;
+
   @include atSmallMedium {
     margin: 0 0 40px 20px;
     width: 300px;

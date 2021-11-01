@@ -1,16 +1,16 @@
-@import '../../../abstracts/abstracts.scss';
 
 .page-banner {
-  background-color: #000;
+  @include relative();
+
+  background-color: $c-black;
   padding: 80px 0 40px 0;
-  position: relative;
+
   @include atSmall {
     padding: 130px 0 60px 0;
   }
 
-  &__content {
-    position: relative;
-    z-index: 2;
+  @include e('content') {
+    @include relative($z-index: pageBanner);
   }
 
   &__title {
@@ -18,7 +18,7 @@
     font-weight: 300;
     font-size: 3.6rem;
     margin: 0 0 1rem 0;
-    color: #fff;
+    color: $c-white;
     @include atSmall {
       font-size: 5rem;
     }

@@ -35,14 +35,12 @@
 }
 
 .slick-dots {
-  z-index: 100;
-  position: absolute;
-  left: 0;
-  right: 0;
+  @include absolute($left: 0, $right: 0, $top: 15px, $z-index: heroSlider);
+
   padding: 0;
   margin: 0;
   text-align: center;
-  top: 15px;
+
   @include atMedium {
     top: 50px;
   }
@@ -79,14 +77,12 @@
 
 /* GlideJS */
 .glide__bullets {
-  z-index: 100;
-  position: absolute;
-  left: 0;
-  right: 0;
+  @include absolute($left: 0, $right: 0, $top: 15px, $z-index: heroSlider);
+
   padding: 0;
   margin: 0;
   text-align: center;
-  top: 15px;
+
   @include atMedium {
     top: 50px;
   }

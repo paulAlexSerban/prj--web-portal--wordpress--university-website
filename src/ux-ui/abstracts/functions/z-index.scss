@@ -1,10 +1,12 @@
 $z-i:
   base,
-  banner__title,
-  banner__find-more,
-  tooltip,
-  navigation__base,
-  cardFront-iconList;
+  pageLinks,
+  pageBanner,
+  siteHeader,
+  schoolLogo,
+  menuTrigger,
+  heroSlider,
+  search;
 
 @function z-index($element, $list: $z-i) {
   $index: index($list, $element);
