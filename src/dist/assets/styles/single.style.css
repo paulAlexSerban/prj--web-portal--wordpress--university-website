@@ -559,10 +559,6 @@ body {
 .link-list a {
   color: #F95738; }
 
-/**
-* used only in University website
-* TODO: change to respond
-*/
 .metabox {
   background-color: #FAF0CA;
   border-radius: 3px;
@@ -576,28 +572,28 @@ body {
     transform: translateY(-50%); }
   .metabox--with-home-link {
     padding: 0; }
-  .metabox__main {
-    padding: 10px 15px 10px 11px; }
-  .metabox p {
+  .metabox__content {
     margin: 0;
     font-size: 0.9rem;
     color: #a79038; }
-  .metabox a {
-    color: #a79038;
-    text-decoration: none;
-    font-weight: bold; }
-  .metabox a:hover {
-    text-decoration: underline; }
-  .metabox .metabox__blog-home-link {
+  .metabox .metabox__parent-link {
     background-color: #0D3B66;
     color: #fff;
     display: inline-block;
     padding: 10px 15px;
     border-radius: 3px 0 0 3px;
     font-weight: normal; }
-  .metabox .metabox__blog-home-link:hover {
+    .metabox .metabox__parent-link:hover {
+      text-decoration: none;
+      background-color: #0a2e4f; }
+  .metabox__current-page {
+    color: #a79038;
     text-decoration: none;
-    background-color: #0a2e4f; }
+    font-weight: bold; }
+    .metabox__current-page:hover {
+      text-decoration: underline; }
+  .metabox__main {
+    padding: 10px 15px 10px 11px; }
 
 .page-banner {
   position: relative;
