@@ -1,5 +1,3 @@
-import './generic.template.scss';
-
 import MobileMenu from "../../components/organisms/mobileMenu/mobileMenu.organism";
 import HeroSlider from "../../components/organisms/heroSlider/heroSlider.organism";
 export default class GenericTemplate {

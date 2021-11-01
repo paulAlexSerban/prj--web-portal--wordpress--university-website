@@ -28,7 +28,9 @@ body {
   position: relative;
 
   > * {
-    width: 100%;
-    max-width: $max-width;
+    &:not(#wpadminbar) {
+      width: 100%;
+      max-width: $max-width;
+    }
   }
 }
