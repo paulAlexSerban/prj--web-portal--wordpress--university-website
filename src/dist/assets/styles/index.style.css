@@ -153,36 +153,36 @@ h6 {
   margin-bottom: 1rem; }
 
 h1 {
-  font-size: 3.6rem; }
+  font-size: 2.9rem; }
 
 h2 {
-  font-size: 3.1rem; }
+  font-size: 2.5rem; }
 
 h3 {
-  font-size: 2.6rem; }
+  font-size: 2rem; }
 
 h4 {
-  font-size: 2.1rem; }
+  font-size: 1.7rem; }
 
 h5 {
-  font-size: 1.6rem; }
+  font-size: 1.4rem; }
 
 h6 {
-  font-size: 1.15rem; }
+  font-size: 1.3rem; }
 
 @media (min-width: 530px) {
   h1 {
-    font-size: 6.25rem; }
+    font-size: 6.5rem; }
   h2 {
-    font-size: 5rem; }
+    font-size: 3rem; }
   h3 {
-    font-size: 3.125rem; }
+    font-size: 2.5rem; }
   h4 {
-    font-size: 2.4rem; }
-  h5 {
     font-size: 1.9rem; }
+  h5 {
+    font-size: 1.7rem; }
   h6 {
-    font-size: 1.15rem; } }
+    font-size: 1.5rem; } }
 
 a {
   color: #0D3B66; }
@@ -192,15 +192,12 @@ a {
     color: var(--text-color);
     text-decoration: underline; }
 
-p {
-  margin: 0 0 1.65em 0;
+p, li {
   font-size: 1.6rem;
   line-height: 1.8rem; }
 
-p,
-li {
-  line-height: 1.65;
-  font-size: 1.15rem; }
+p {
+  margin: 0 0 1.65em 0; }
 
 blockquote,
 blockquote p {
@@ -660,24 +657,28 @@ body {
       background-color: #0D3B66; }
   .page-links li {
     border-top: 1px solid #f4de89; }
-  .page-links li:first-child {
-    border-top: none; }
-  .page-links__active,
+    .page-links li:first-child {
+      border-top: none; }
+    .page-links li a {
+      display: block;
+      text-align: center;
+      padding: 17px 10px;
+      text-decoration: none;
+      color: #0D3B66;
+      transition: all 0.3s; }
+      .page-links li a:hover {
+        color: #0a2b4b;
+        background-color: #f2e3aa; }
+  .page-links__active {
+    text-align: center;
+    background-color: #f4e6b1;
+    color: #0D3B66;
+    font-weight: bold; }
   .page-links .current_page_item {
     text-align: center;
     background-color: #f4e6b1;
     color: #0D3B66;
     font-weight: bold; }
-  .page-links li a {
-    display: block;
-    text-align: center;
-    padding: 17px 10px;
-    text-decoration: none;
-    color: #0D3B66;
-    transition: all 0.3s; }
-  .page-links li a:hover {
-    color: #0a2b4b;
-    background-color: #f2e3aa; }
 
 /**
 * used only in University website
@@ -1240,7 +1241,7 @@ body.login {
   list-style: none; }
 
 .nav-list a {
-  font-size: 0.9rem;
+  font-size: 1.6rem;
   color: #999;
   text-decoration: none; }
 
