@@ -1,10 +1,6 @@
 # University Website
 
 ## Build Scripts Config
-1. go to you desired shell emulator configuration file (./zshrc or ./bashrc) and add the next line according to your project structure
-  `. ~/Desktop/MY_projects/University-Website/scripts/.university-website.bash`
-2. restart your terminal emulator in order to get the scripts loaded
-3. go to `./env` and configure the ROOT_DIR variable
 
 ## Requirements
 * NodeJS v12
