@@ -1,7 +1,17 @@
 @import '../../../abstracts/abstracts.scss';
 
+@mixin setActiveStyles () {
+  text-align: center;
+  background-color: scale-color($beige, $lightness: -7%, $saturation: -10%);
+  color: $mainBlue;
+  font-weight: bold;
+}
+
 .page-links {
+  $root: &;
+
   @include relative($z-index: pageLinks);
+
   background-color: $beige;
   margin: 0 0 40px 0;
 
@@ -11,7 +21,7 @@
     float: right;
   }
 
-  &__title {
+  @include e('title') {
     margin: 0;
     font-weight: normal;
     text-align: center;
@@ -28,31 +38,31 @@
 
   li {
     border-top: 1px solid adjust-color($beige, $lightness: -14%);
+
+    &:first-child {
+      border-top: none;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      padding: 17px 10px;
+      text-decoration: none;
+      color: $mainBlue;
+      transition: all 0.3s;
+  
+      &:hover {
+        color: adjust-color($mainBlue, $lightness: -6%);
+        background-color: scale-color($beige, $lightness: -9%, $saturation: -12%);
+      }
+    }
   }
 
-  li:first-child {
-    border-top: none;
+  @include e('active') {
+    @include setActiveStyles();
   }
 
-  &__active,
   & .current_page_item {
-    text-align: center;
-    background-color: scale-color($beige, $lightness: -7%, $saturation: -10%);
-    color: $mainBlue;
-    font-weight: bold;
-  }
-
-  li a {
-    display: block;
-    text-align: center;
-    padding: 17px 10px;
-    text-decoration: none;
-    color: $mainBlue;
-    transition: all 0.3s;
-  }
-
-  li a:hover {
-    color: adjust-color($mainBlue, $lightness: -6%);
-    background-color: scale-color($beige, $lightness: -9%, $saturation: -12%);
+    @include setActiveStyles();
   }
 }
