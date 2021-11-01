@@ -89,14 +89,14 @@ function watch-dist-assets () {
 function watch-template-files () {
   fswatch -xnr  -l 2 $TEMPLATE_FILES/*/*.php | while read num event
   do 
-    rsync -xnr --mkpath $num $THEME_BUILD_TARGET/ --info=progress2
+    rsync -rv --mkpath $TEMPLATE_FILES/*/*.php $WORDPRESS_THEME_TARGET --info=progress2
   done
 }
 
 function watch-components () {
   fswatch -xrv -l 2 $COMPONENT_FILES/*/*/*.php | while read num event 
   do 
-    rsync -rv --mkpath $num $THEME_BUILD_TARGET --info=progress2
+    rsync -rv --mkpath $COMPONENT_FILES/*/*/*.php $WORDPRESS_THEME_TARGET --info=progress2
   done
 }
 

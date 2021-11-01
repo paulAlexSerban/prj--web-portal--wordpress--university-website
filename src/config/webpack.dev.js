@@ -11,9 +11,9 @@ const getEntries = (path) =>
     return acc;
   }, {});
 
-let moleculesPaths = {...getEntries("./ux-ui/components/*/*/*.molecule.js")}
-let organismPaths = {...getEntries("./ux-ui/components/*/*/*.organism.js")};
-let templatePaths = {...getEntries("./ux-ui/templates/*/*.template.js")};
+const PAGE_TEMPLATE_SCRIPTS = {...getEntries("./ux-ui/page-templates/*/*.page-template.js")}
+const PAGE_TEMPLATE_STYLES = {...getEntries("./ux-ui/page-templates/*/*.page-template.scss")}
+const VENDOR_PATHS = {...getEntries("./ux-ui/vendors/*/*.vendor.js")};
 
 const cssRules = {
   test: /\.(css|sass|scss)$/,
@@ -49,12 +49,12 @@ const jsRules = {
   }
 
 module.exports = {
-  entry: {...templatePaths},
+  entry: {...PAGE_TEMPLATE_STYLES, ... PAGE_TEMPLATE_SCRIPTS, ...VENDOR_PATHS},
   output: {
     path: path.resolve(__dirname, "../dist/assets"),
     filename: "scripts/[name].script.js"
   },
-  mode: "production",
+  mode: "development",
   module: {
     rules: [
       jsRules,
