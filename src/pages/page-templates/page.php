@@ -14,7 +14,7 @@ function getMetabox() { ?>
       <a class="metabox__parent-link" href="<?php echo get_permalink(getParent()); ?>">
         <i class="fa fa-home" aria-hidden="true"></i>
           Back to <?php echo get_the_title(getParent()); ?>
-      </a class="metabox__current-page"> 
+      </a> 
         <span class="metabox__main"><?php the_title() ?></span>
     </p>
   </div>
@@ -61,22 +61,22 @@ function getPageLinks() { ?>
 
   <div class="container container--narrow page-section">
 
-  <?php
-  if(getParent()) {
-    getMetabox();
-  } 
+    <?php
+    if(getParent()) {
+      getMetabox();
+    } 
 
-  $testArray = get_pages(array(
-    // if current page has children, this will return a collection of an y and all children pages
-    'child_of' => get_the_ID()
-  ));
+    $testArray = get_pages(array(
+      // if current page has children, this will return a collection of an y and all children pages
+      'child_of' => get_the_ID()
+    ));
 
-  if(getParent() || $testArray) {
-    // test if you are on a child page of if you are on a parent page
-    getPageLinks();
-  }
-  
-  ?>
+    if(getParent() || $testArray) {
+      // test if you are on a child page of if you are on a parent page
+      getPageLinks();
+    }
+    
+    ?>
 
     <div class="generic-content">
       <?php the_content(); ?>

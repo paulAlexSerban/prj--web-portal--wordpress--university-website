@@ -188,9 +188,6 @@ a {
   color: #0D3B66; }
   a, a:hover {
     text-decoration: none; }
-  a:hover, a:active, a:focus {
-    color: var(--text-color);
-    text-decoration: underline; }
 
 p, li {
   font-size: 1.6rem;
@@ -319,10 +316,6 @@ body {
 .acf-map img {
   max-width: inherit !important; }
 
-/**
-* used only in University website
-* TODO: change to respond
-*/
 .btn {
   display: inline-block;
   cursor: pointer;
