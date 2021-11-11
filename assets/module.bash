@@ -4,7 +4,7 @@ echo -e " ${GREEN} ACCESSED assets/module.bash ${NC}"
 
 # INSTALL Scripts
 
-function copy-backed-up-assets-src-to-build () {
+function copy-backedup-assets-src-to-build () {
   echo -e "${BLUE} --> [ --- START --- COPY ] uploads ${GREEN} "
   rsync -rv --mkpath $ASSETS_DIR/uploads $WORDPRESS_WP_CONTENT --info=progress2
   echo -e "${BLUE} --> [ --- DONE --- COPY ] uploads ${NC} "
