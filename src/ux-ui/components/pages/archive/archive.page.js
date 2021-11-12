@@ -1,0 +1,1 @@
+import './archive.page.scss';

@@ -1,16 +1,16 @@
-@import '../../../abstracts/abstracts.scss';
+@import "../../../abstracts/abstracts.scss";
 
 .search-overlay {
   @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0, $z-index: search);
 
-  overflow-y: auto;
-  overflow-x: hidden;
-  background-color: rgba(255, 255, 255, 0.96);
-  visibility: hidden;
-  opacity: 0;
-  transform: scale(1.09);
-  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  visibility: hidden;
+  background-color: rgba(255, 255, 255, 96%);
+  opacity: 0%;
+  transition: opacity .3s, transform .3s, visibility .3s;
+  transform: scale(1.09);
 
   p {
     padding-top: 15px;
@@ -21,8 +21,8 @@
   }
 
   .event-summary {
-    margin-bottom: 0;
     margin-top: 20px;
+    margin-bottom: 0;
   }
 
   body.admin-bar & {
@@ -87,20 +87,21 @@
 }
 
 .search-term {
-  width: 75%;
-  box-sizing: border-box;
-  border: none;
-  padding: 15px 0;
-  margin: 0;
-  background-color: transparent;
+  color: $darkOrange;
   font-size: 1rem;
   font-weight: 300;
+  width: 75%;
+  padding: 15px 0;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  background-color: transparent;
   outline: none;
-  color: $darkOrange;
-  @include atSmall {
+
+  @include atSmall() {
     font-size: 1.5rem;
   }
-  @include atMedium {
+  @include atMedium() {
     width: 80%;
     font-size: 3rem;
   }
