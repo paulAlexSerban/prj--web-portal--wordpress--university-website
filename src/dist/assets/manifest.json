@@ -1,0 +1,12 @@
+{
+  "archive.css": "styles/archive.style.css",
+  "archive.js": "scripts/archive.script.js",
+  "front-page.css": "styles/front-page.style.css",
+  "front-page.js": "scripts/front-page.script.js",
+  "index.css": "styles/index.style.css",
+  "index.js": "scripts/index.script.js",
+  "page.css": "styles/page.style.css",
+  "page.js": "scripts/page.script.js",
+  "single.css": "styles/single.style.css",
+  "single.js": "scripts/single.script.js"
+}
