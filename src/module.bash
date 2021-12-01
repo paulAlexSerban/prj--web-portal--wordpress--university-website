@@ -28,7 +28,7 @@ function copy_fe_assets-src-to-build () {
 
 function copy_must-use-plugins-src-to-build () {
   echo -e "${BLUE} --> [ COPY ] must-use plugin files ${GREEN} "
-  rsync -rv --mkpath $ROOT_DIR/src/plugins/mu-plugins $ROOT_DIR/build/wordpress/wp-content/mu-plugins/ --info=progress2
+  rsync -rv --mkpath $ROOT_DIR/src/plugins/mu-plugins/*.php $ROOT_DIR/build/wordpress/wp-content/mu-plugins/ --info=progress2
 }
 
 function copy_plugins-src-to-build () {
