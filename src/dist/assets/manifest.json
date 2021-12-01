@@ -7,6 +7,8 @@
   "index.js": "scripts/index.script.js",
   "page.css": "styles/page.style.css",
   "page.js": "scripts/page.script.js",
+  "single-event.css": "styles/single-event.style.css",
+  "single-event.js": "scripts/single-event.script.js",
   "single.css": "styles/single.style.css",
   "single.js": "scripts/single.script.js"
 }
