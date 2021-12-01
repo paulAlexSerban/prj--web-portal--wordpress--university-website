@@ -16,7 +16,7 @@ function getMetabox() { ?>
         <i class="fa fa-home" aria-hidden="true"></i>
           Events Home
       </a> 
-        <span class="metabox__main"><? the_post();?></span>
+        <span class="metabox__main"><? the_title();?></span>
     </p>
   </div>
 <?php }
