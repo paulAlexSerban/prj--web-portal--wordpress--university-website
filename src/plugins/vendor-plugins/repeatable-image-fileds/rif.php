@@ -3,6 +3,7 @@
  * Plugin Name: Repeatable Image Fields
  * Plugin URI:  https://Repeatable_Image_Fields.com
  * Description: Repeatable Image Fields to use in a carousel
+ * Version: 1.0.0
  * Author:      Paul Serban
  */
 

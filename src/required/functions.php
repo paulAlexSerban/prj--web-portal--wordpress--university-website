@@ -6,23 +6,16 @@ function load_vendor_scripts () {
 }
 add_action('wp_enqueue_scripts', 'load_vendor_scripts');
 
-
-
-
 function university_files() {
   wp_enqueue_script('index', get_theme_file_uri('/assets/scripts/index.script.js'), array('jquery'), '1.0', true);
   wp_enqueue_style('index', get_theme_file_uri('/assets/styles/index.style.css'));
 }
 add_action('wp_enqueue_scripts', 'university_files');
 
-
-
 function university_features () {
   add_theme_support('title-tag');
 }
 add_action('after_setup_theme', 'university_features');
-
-
 
 function university_navigation () {
   register_nav_menu('headerMenuLocation', 'Header Menu Location');
@@ -30,8 +23,6 @@ function university_navigation () {
   register_nav_menu('footerLocationTwo', 'Footer Location Two');
 }
 add_action('after_setup_theme', 'university_navigation');
-
-
 
 /**
  * this function adds and extra class to list items in the navigation
@@ -43,4 +34,5 @@ function add_additional_class_on_li($classes, $item, $args) {
   }
   return $classes;
 }
+
 add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
