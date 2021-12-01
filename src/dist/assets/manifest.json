@@ -11,6 +11,8 @@
   "page.js": "scripts/page.script.js",
   "single-event.css": "styles/single-event.style.css",
   "single-event.js": "scripts/single-event.script.js",
+  "single-professor.css": "styles/single-professor.style.css",
+  "single-professor.js": "scripts/single-professor.script.js",
   "single.css": "styles/single.style.css",
   "single.js": "scripts/single.script.js"
 }
