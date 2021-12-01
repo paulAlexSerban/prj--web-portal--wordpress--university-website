@@ -12,7 +12,7 @@ function getParent() {
 function getMetabox() { ?>
   <div class="metabox metabox--position-up metabox--with-home-link">
     <p class="metabox__content">
-      <a class="metabox__parent-link" href="<?php echo site_url('/blog'); ?>">
+      <a class="metabox__parent-link" href="<?php echo get_post_type_archive_link('event'); ?>">
         <i class="fa fa-home" aria-hidden="true"></i>
           Events Home
       </a> 
