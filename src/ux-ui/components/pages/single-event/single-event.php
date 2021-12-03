@@ -1,14 +1,5 @@
 <?php 
 
-// functions
-/**
- * getParent() returns 0 if it is called for on a parent page or the id of the parent page
- */
-function getParent() {
-  $theParent = wp_get_post_parent_id(get_the_id());
-  return $theParent;
-}
-
 function getMetabox() { ?>
   <div class="metabox metabox--position-up metabox--with-home-link">
     <p class="metabox__content">
@@ -43,13 +34,22 @@ function getMetabox() { ?>
     <div class="container container--narrow page-section">
       <?php getMetabox();?>
 
-      <div class="generic-content">
-        <?php the_content();?>
-      </div>
+      <div class="generic-content"> <?php the_content();?> </div>
+
+      <?php $relatedPrograms = get_field('related_programs'); 
+        if($relatedPrograms) { ?>
+          <hr class="section-break">
+          <h2 class="headline headline--medium">Related programs</h2>
+          <ul class="link-list min-list">
+            <?php foreach($relatedPrograms as $program) { ?>
+              <li>
+                <a href="<?php echo get_the_permalink($program)?>"><?php echo get_the_title($program)?></a>
+              </li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
+
     </div
-    
-  <?php }
-
-  get_footer();
-
-?>
+  <?php } 
+  
+  get_footer(); ?>
