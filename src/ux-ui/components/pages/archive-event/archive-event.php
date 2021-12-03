@@ -8,7 +8,7 @@
       All Events
     </h1>
     <div class="page-banner__intro">
-      <p>See what si going on in our world.</p>
+      <p>See what is going on in our world.</p>
     </div>
   </div>
 </div>
