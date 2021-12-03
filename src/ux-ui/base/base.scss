@@ -30,7 +30,6 @@ body {
   > * {
     &:not(#wpadminbar) {
       width: 100%;
-      max-width: $max-width;
     }
   }
 }
