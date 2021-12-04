@@ -1,15 +1,4 @@
-<?php 
-
-// functions
-/**
- * getParent() returns 0 if it is called for on a parent page or the id of the parent page
- */
-function getParent() {
-  $theParent = wp_get_post_parent_id(get_the_id());
-  return $theParent;
-}
-  
-  get_header();
+<?php get_header();
 
   while(have_posts()) {
     the_post(); ?>
@@ -27,7 +16,7 @@ function getParent() {
     <div class="container container--narrow page-section">
 
       <div class="generic-content">
-        <div class="row group">
+      <div class="row group">
           <div class="one-third">
           <?php the_post_thumbnail(); ?>
           </div>
@@ -36,10 +25,21 @@ function getParent() {
           </div>
         </div>
       </div>
+
+      <?php $relatedPrograms = get_field('related_programs'); 
+        if($relatedPrograms) { ?>
+          <hr class="section-break">
+          <h2 class="headline headline--medium">Subject(s) thought</h2>
+          <ul class="link-list min-list">
+            <?php foreach($relatedPrograms as $program) { ?>
+              <li>
+                <a href="<?php echo get_the_permalink($program)?>"><?php echo get_the_title($program)?></a>
+              </li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
+
     </div
-    
-  <?php }
-
-  get_footer();
-
-?>
+  <?php } ?>
+  
+  <?php get_footer(); ?>
