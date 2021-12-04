@@ -1,4 +1,6 @@
 {
+  "archive-campus.css": "styles/archive-campus.style.css",
+  "archive-campus.js": "scripts/archive-campus.script.js",
   "archive-event.css": "styles/archive-event.style.css",
   "archive-event.js": "scripts/archive-event.script.js",
   "archive-program.css": "styles/archive-program.style.css",

@@ -56,6 +56,22 @@ function university_post_types() {
     ), 
     'menu_icon' => 'dashicons-welcome-learn-more'
   ));
+
+    // Campuses post types
+    register_post_type('campus', array(
+      'supports' => array('title', 'editor', 'excerpt'),
+      'public' => true,
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'labels' => array(
+        'name' => 'Campuses',
+        'add_new_item' => 'Add New Campus',
+        'edit_item' => 'Edit Campus',
+        'all_items' => 'All Campuses',
+        'singular_name' => 'Campuses'
+      ), 
+      'menu_icon' => 'dashicons-location-alt'
+    ));
 }
 
 add_filter('init', 'university_post_types');
