@@ -1,3 +1,13 @@
+<?php
+  $pageType = '';
+
+  if(is_front_page()) {
+    $pageType = 'index';
+  } else {
+    $pageType = 'index';
+  }
+?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
   <head>
@@ -5,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
   </head>
-  <body <?php body_class(); ?>>
+  <body <?php body_class(); ?> data-js-page="<?php echo $pageType; ?>">
     <header class="site-header" data-js-component="mobile-menu">
       <div class="container">
         <h1 class="school-logo-text float-left">
