@@ -1,4 +1,11 @@
 <?php
+$apiKey = 'xxx';
+
+function getGoogleMapsAPI() {
+  return 'https://maps.googleapis.com/maps/api/js?key=xxx';
+}
+
+
 
 function pageBanner($args = null) {
   if(!$args['title']) { $args['title'] = get_the_title(); }
@@ -27,6 +34,7 @@ function pageBanner($args = null) {
 function load_vendor_scripts () {
   wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
   wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+  wp_enqueue_script('google-map', getGoogleMapsAPI(), NULL, '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'load_vendor_scripts');
 
@@ -91,7 +99,7 @@ function university_adjust_queries($query) {
 add_action('pre_get_posts', 'university_adjust_queries');
 
 function university_map_key($api) {
-  $api['key'] = 'paste in here the google maps api key ;)';
+  $api['key'] = $apiKey;
   return $api;
 }
 
