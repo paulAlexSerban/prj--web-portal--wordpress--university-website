@@ -22,3 +22,4 @@ class IndexPage {
 }
 
 document.querySelectorAll('[data-js-page="index"]').forEach((page) => new IndexPage(page));
+console.log(document.querySelectorAll('[data-js-page="index"]'));

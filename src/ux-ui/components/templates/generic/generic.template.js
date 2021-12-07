@@ -1,5 +1,6 @@
 import MobileMenu from '../../organisms/mobileMenu/mobileMenu.organism';
 import HeroSlider from '../../organisms/heroSlider/heroSlider.organism';
+import GMap from '../../organisms/googleMap/GoogleMap.organism';
 
 export default class GenericTemplate {
   constructor(pageParams) {
@@ -18,6 +19,10 @@ export default class GenericTemplate {
 
     document.querySelectorAll('[data-js-component="hero-slider"]').forEach(() => {
       this.HERO_SLIDER = new HeroSlider(this.pageParams, this.templateParams);
+    });
+
+    document.querySelectorAll('[data-js-component="google-map"]').forEach(() => {
+      this.GOOGLE_MAP = new GMap();
     });
   }
 

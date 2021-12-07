@@ -1,76 +1,90 @@
 class GMap {
   constructor() {
-    document.querySelectorAll(".acf-map").forEach(el => {
-      this.new_map(el)
-    })
+    this.init();
   }
 
-  new_map($el) {
-    var $markers = $el.querySelectorAll(".marker")
+  setupDomReferences() {
+    this.acfMap = document.querySelector('.acf-map');
+    this.markers = this.acfMap.querySelectorAll('.marker');
+  }
 
-    var args = {
-      zoom: 16,
-      center: new google.maps.LatLng(0, 0),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+  /**
+   * 1. if marker contains HTML, add it to an infoWindow
+   * 2. create info window
+   * 3. show info window when marker is clicked
+   */
+
+  addMarker(marker, map) {
+    this.latlng = new window.google.maps.LatLng(marker.getAttribute('data-lat'), marker.getAttribute('data-lng'));
+
+    this.marker = new window.google.maps.Marker({
+      position: this.latlng,
+      map,
+    });
+
+    map.markers.push(this.marker);
+
+    if (marker.innerHTML) { /* 1 */
+      console.log(marker.innerHTML);
+      this.infowindow = new window.google.maps.InfoWindow({ /* 2 */
+        content: marker.innerHTML,
+      });
+
+      window.google.maps.event.addListener(this.marker, 'click', () => { /* 3 */
+        this.infowindow.open(map, this.marker);
+      });
     }
+  }
 
-    var map = new google.maps.Map($el, args)
-    map.markers = []
-    var that = this
+  /**
+   * 1. loop through all markers and create bounds
+   * 2. only 1 marker?
+   * 3. set center of map
+   * 4. fit to bounds
+   */
 
-    // add markers
-    $markers.forEach(function (x) {
-      that.add_marker(x, map)
-    })
+  centerMap(map) {
+    this.bounds = new window.google.maps.LatLngBounds();
 
-    // center map
-    this.center_map(map)
-  } // end new_map
+    map.markers.forEach((marker) => { /* 1 */
+      this.latlng = new window.google.maps.LatLng(marker.position.lat(), marker.position.lng());
 
-  add_marker($marker, map) {
-    var latlng = new google.maps.LatLng($marker.getAttribute("data-lat"), $marker.getAttribute("data-lng"))
+      this.bounds.extend(this.latlng);
+    });
 
-    var marker = new google.maps.Marker({
-      position: latlng,
-      map: map
-    })
-
-    map.markers.push(marker)
-
-    // if marker contains HTML, add it to an infoWindow
-    if ($marker.innerHTML) {
-      // create info window
-      var infowindow = new google.maps.InfoWindow({
-        content: $marker.innerHTML
-      })
-
-      // show info window when marker is clicked
-      google.maps.event.addListener(marker, "click", function () {
-        infowindow.open(map, marker)
-      })
-    }
-  } // end add_marker
-
-  center_map(map) {
-    var bounds = new google.maps.LatLngBounds()
-
-    // loop through all markers and create bounds
-    map.markers.forEach(function (marker) {
-      var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
-
-      bounds.extend(latlng)
-    })
-
-    // only 1 marker?
-    if (map.markers.length == 1) {
-      // set center of map
-      map.setCenter(bounds.getCenter())
-      map.setZoom(16)
+    if (map.markers.length === 1) { /* 2 */
+      map.setCenter(this.bounds.getCenter()); /* 3 */
+      map.setZoom(16);
     } else {
-      // fit to bounds
-      map.fitBounds(bounds)
+      map.fitBounds(this.bounds); /* 4 */
     }
-  } // end center_map
+  }
+
+  /**
+   * 1. add markers
+   * 2. center map
+   */
+
+  newMap(el) {
+    this.args = {
+      zoom: 16,
+      center: { lat: 0, lng: 0 },
+    };
+
+    this.map = new window.google.maps.Map(el, this.args);
+    this.map.markers = [];
+
+    this.markers.forEach((x) => { /* 1 */
+      this.addMarker(x, this.map);
+    });
+
+    this.centerMap(this.map); /* 2 */
+  }
+
+  init() {
+    this.setupDomReferences();
+    this.newMap(this.acfMap);
+  }
 }
 
-export default GMap
+export default GMap;
