@@ -17,9 +17,7 @@ class IndexPage {
 
   init() {
     this.setupTemplate();
-    console.log(this.pageParams);
   }
 }
 
 document.querySelectorAll('[data-js-page="index"]').forEach((page) => new IndexPage(page));
-console.log(document.querySelectorAll('[data-js-page="index"]'));

@@ -17,8 +17,8 @@ export default class GenericTemplate {
       this.MOBILE_MENU = new MobileMenu(this.pageParams, this.templateParams);
     });
 
-    document.querySelectorAll('[data-js-component="hero-slider"]').forEach(() => {
-      this.HERO_SLIDER = new HeroSlider(this.pageParams, this.templateParams);
+    document.querySelectorAll('[data-js-component="hero-slider"]').forEach((el) => {
+      this.HERO_SLIDER = new HeroSlider(el, this.pageParams, this.templateParams);
     });
 
     document.querySelectorAll('[data-js-component="google-map"]').forEach(() => {
