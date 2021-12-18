@@ -52,7 +52,7 @@ function university_post_types() {
       'add_new_item' => 'Add New Professor',
       'edit_item' => 'Edit Professor',
       'all_items' => 'All Professors',
-      'singular_name' => 'Professors'
+      'singular_name' => 'Professor'
     ), 
     'menu_icon' => 'dashicons-welcome-learn-more'
   ));
@@ -68,7 +68,7 @@ function university_post_types() {
         'add_new_item' => 'Add New Campus',
         'edit_item' => 'Edit Campus',
         'all_items' => 'All Campuses',
-        'singular_name' => 'Campuses'
+        'singular_name' => 'Campus'
       ), 
       'menu_icon' => 'dashicons-location-alt'
     ));
