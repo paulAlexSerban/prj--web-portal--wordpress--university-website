@@ -15,6 +15,8 @@
   "page-past-events.js": "scripts/page-past-events.script.js",
   "page.css": "styles/page.style.css",
   "page.js": "scripts/page.script.js",
+  "single-campus.css": "styles/single-campus.style.css",
+  "single-campus.js": "scripts/single-campus.script.js",
   "single-event.css": "styles/single-event.style.css",
   "single-event.js": "scripts/single-event.script.js",
   "single-professor.css": "styles/single-professor.style.css",
