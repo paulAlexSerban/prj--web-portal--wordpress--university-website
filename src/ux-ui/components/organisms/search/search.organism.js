@@ -1,3 +1,6 @@
+import { getJSON } from './searchUtils';
+import { spinnerLoader, searchResults } from './htmlTemplates';
+
 class Search {
   constructor(el) {
     this.el = el;
@@ -38,7 +41,8 @@ class Search {
   }
 
   keyPressDispatcher(e) {
-    if (e.keyCode === 83
+    if (
+      e.keyCode === 83
       && !this.isOverlayOpen
       && !(document.querySelectorAll('input:focus').length > 0)
       && !(document.querySelectorAll('textarea:focus').length > 0)) {
@@ -56,7 +60,7 @@ class Search {
 
       if (this.searchTerm.value) {
         if (!this.isSpinnerVisible) {
-          this.searchResultsContainer.innerHTML = '<div class="spinner-loader"></div>';
+          this.searchResultsContainer.innerHTML = spinnerLoader();
           this.isSpinnerVisible = true;
         }
         this.typingTimer = setTimeout(() => {
@@ -71,8 +75,12 @@ class Search {
     this.previousValue = this.searchTerm.value;
   }
 
-  getResults() {
-    this.searchResultsContainer.innerHTML = 'imagine real search results were here';
+  async getResults() {
+    const resultJSON = await getJSON('http://localhost/wp-json/wp/v2/posts', {
+      search: this.searchTerm.value,
+    });
+    this.isSpinnerVisible = false;
+    this.searchResultsContainer.innerHTML = searchResults(resultJSON);
   }
 
   init() {
