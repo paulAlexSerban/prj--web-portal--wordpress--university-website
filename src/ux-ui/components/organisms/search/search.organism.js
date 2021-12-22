@@ -8,6 +8,7 @@ class Search {
     this.typingTimer = '';
     this.isSpinnerVisible = false;
     this.previousValue = '';
+    this.universityData = window.globalThis.universityData;
     this.init();
   }
 
@@ -76,7 +77,7 @@ class Search {
   }
 
   async getResults() {
-    const resultJSON = await getJSON('http://localhost/wp-json/wp/v2/posts', {
+    const resultJSON = await getJSON(`${this.universityData.rootUrl}/wp-json/wp/v2/posts`, {
       search: this.searchTerm.value,
     });
     this.isSpinnerVisible = false;

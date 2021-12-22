@@ -39,9 +39,21 @@ function load_vendor_scripts () {
 add_action('wp_enqueue_scripts', 'load_vendor_scripts');
 
 function university_files() {
-  wp_enqueue_script('index', get_theme_file_uri('/assets/scripts/index.script.js'), array('jquery'), '1.0', true);
+  wp_enqueue_script('main-university-index-js', get_theme_file_uri('/assets/scripts/index.script.js'), array('jquery'), '1.0', true);
   wp_enqueue_style('index', get_theme_file_uri('/assets/styles/index.style.css'));
+
+  /**
+   * wp_localize_script
+   * 
+   * This function localizes a registered script with data for a JavaScript variable.
+   * This is necessary because WordPress currently only offers a localization API in PHP, not directly in JavaScript.
+   * This will let us output a little-bit of JavaScript data into the source, it is useful to make possible installation of the site in omr places than the root directory
+   */
+  wp_localize_script('main-university-index-js', 'universityData', array(
+    'rootUrl' => get_site_url()
+  ));
 }
+
 add_action('wp_enqueue_scripts', 'university_files');
 
 function university_features () {
