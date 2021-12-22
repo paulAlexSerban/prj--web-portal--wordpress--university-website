@@ -32,3 +32,4 @@ export const searchResults = (json) => {
     `;  
 }
 
+export const error = () => `<p>Unexpected error, please try again</p>`;

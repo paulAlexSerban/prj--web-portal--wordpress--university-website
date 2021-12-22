@@ -1,5 +1,5 @@
 import { getJSON } from './searchUtils';
-import { spinnerLoader, searchResults } from './htmlTemplates';
+import { spinnerLoader, searchResults, error } from './htmlTemplates';
 
 class Search {
   constructor(el) {
@@ -64,8 +64,12 @@ class Search {
           this.searchResultsContainer.innerHTML = spinnerLoader();
           this.isSpinnerVisible = true;
         }
-        this.typingTimer = setTimeout(() => {
-          this.getResults();
+        this.typingTimer = setTimeout(async () => {
+          await this.getResults().then((results) => {
+            this.searchResultsContainer.innerHTML = searchResults(results);
+          }, () => {
+            this.searchResultsContainer.innerHTML = error();
+          });
         }, 1500);
       } else {
         this.searchResultsContainer.innerHTML = '';
@@ -77,11 +81,16 @@ class Search {
   }
 
   async getResults() {
-    const resultJSON = await getJSON(`${this.universityData.rootUrl}/wp-json/wp/v2/posts`, {
+    const postsJSON = await getJSON(`${this.universityData.rootUrl}/wp-json/asdwp/v2/posts`, {
       search: this.searchTerm.value,
     });
+
+    const pagesJSON = await getJSON(`${this.universityData.rootUrl}/wp-json/wp/v2/pages`, {
+      search: this.searchTerm.value,
+    });
+
     this.isSpinnerVisible = false;
-    this.searchResultsContainer.innerHTML = searchResults(resultJSON);
+    return [...postsJSON, ...pagesJSON];
   }
 
   init() {
