@@ -1,11 +1,19 @@
 <?php
-$apiKey = 'xxx';
-
-function getGoogleMapsAPI() {
-  return 'https://maps.googleapis.com/maps/api/js?key=xxx';
+function university_custom_rest() {
+  register_rest_field('post', 'author_name', array(
+    'get_callback' => function() {
+      return get_the_author();
+    }
+  ));
 }
 
+add_action('rest_api_init', 'university_custom_rest');
 
+$apiKey = 'AIzaSyDQUZNiiEtnVvZ5MJZiVzmDLQ54ursZtoY';
+
+function getGoogleMapsAPI() {
+  return 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDQUZNiiEtnVvZ5MJZiVzmDLQ54ursZtoY';
+}
 
 function pageBanner($args = null) {
   if(!$args['title']) { $args['title'] = get_the_title(); }

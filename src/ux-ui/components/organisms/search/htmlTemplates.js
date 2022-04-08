@@ -15,6 +15,7 @@ const resultItem = (item) => {
       <a href="${item.link}">
         ${item.title.rendered}
       </a>
+      ${item.type === 'post'? `by ${item.author_name}`: ''}
     </li>
   `
 }

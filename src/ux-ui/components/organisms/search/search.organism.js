@@ -81,7 +81,7 @@ class Search {
   }
 
   async getResults() {
-    const postsJSON = await getJSON(`${this.universityData.rootUrl}/wp-json/asdwp/v2/posts`, {
+    const postsJSON = await getJSON(`${this.universityData.rootUrl}/wp-json/wp/v2/posts`, {
       search: this.searchTerm.value,
     });
 
