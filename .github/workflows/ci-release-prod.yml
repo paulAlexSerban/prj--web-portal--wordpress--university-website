@@ -1,4 +1,4 @@
-name: CI Release
+name: CI Release to Production
 on:
   push:
     branches: [main]
