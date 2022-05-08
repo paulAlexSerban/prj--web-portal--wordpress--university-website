@@ -1,0 +1,77 @@
+<mxfile host="65bd71144e">
+    <diagram id="xj9Ti3HVJKT_vAh-KAOp" name="Page-1">
+        <mxGraphModel dx="2022" dy="2351" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="6" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./src&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;- &quot;source&quot; files to build and develop the project&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;- this is where the original source files are located, before being compiled into fewer files to&amp;nbsp;&lt;span style=&quot;padding: 2px 4px ; font-stretch: inherit ; line-height: inherit ; font-size: 13px ; box-sizing: inherit ; border-radius: 3px&quot;&gt;dist/&lt;/span&gt;,&amp;nbsp;&lt;span style=&quot;padding: 2px 4px ; font-stretch: inherit ; line-height: inherit ; font-size: 13px ; box-sizing: inherit ; border-radius: 3px&quot;&gt;public/&lt;/span&gt;&amp;nbsp;or&amp;nbsp;&lt;span style=&quot;padding: 2px 4px ; font-stretch: inherit ; line-height: inherit ; font-size: 13px ; box-sizing: inherit ; border-radius: 3px&quot;&gt;build/&lt;/span&gt;.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- 'includes', 'mu-plugins', 'required', 'templates'&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="50" width="270" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="7" target="17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;font color=&quot;#ffffff&quot;&gt;&lt;font style=&quot;font-size: 25px&quot;&gt;./dist&lt;/font&gt;&lt;br&gt;&lt;div&gt;&lt;span&gt;-&amp;nbsp;&lt;/span&gt;&lt;span&gt;&quot;distribution&quot;, the compiled code/library&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;- directory where files will be stored that can be directly used by others without the need to compile or minify the source code&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="50" width="280" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9" target="17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./assets&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;&amp;nbsp;- static content like images, video, audio, fonts etc.&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- /assets/uploads&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="280" width="270" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="&lt;font style=&quot;font-size: 26px&quot;&gt;./config&lt;/font&gt;&lt;br&gt;&lt;div&gt;&lt;span&gt;- development insatnce configuration files&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="-120" width="280" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./lib&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;&amp;nbsp;- external dependencies when included directly&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="480" width="270" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./test&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;&amp;nbsp;- the project's tests scripts, moks, etc.&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="680" width="270" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="14" target="17" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="902" y="940"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./vendor&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;&amp;nbsp;- includes libraries and dependencies for PHP packages, used by Composer&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="880" width="270" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./bin&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;&amp;nbsp;- files that get added to your PATH when installed&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1080" width="270" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./docs&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;&amp;nbsp;- documentations&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1280" width="270" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.963;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="17" target="9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="17" target="20">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="977" y="1520"/>
+                            <mxPoint x="310" y="1520"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="&lt;font style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;span style=&quot;padding: 2px 4px ; font-stretch: inherit ; line-height: inherit ; box-sizing: inherit ; border-radius: 3px&quot;&gt;&lt;font style=&quot;font-size: 26px&quot;&gt;./build&lt;/font&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;- The files meant for production or public use are usually located here.&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="920" y="230" width="300" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="20" target="17">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1052" y="1570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="&lt;font style=&quot;color: rgb(255 , 255 , 255) ; font-size: 26px&quot;&gt;./db-backup&lt;/font&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;div&gt;&amp;nbsp;- documentations&lt;/div&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1480" width="270" height="120" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
