@@ -1,0 +1,5 @@
+{
+  "php": "link.atom.php",
+  "javascript": "link.atom.js",
+  "style":"link.atom.scss"
+}

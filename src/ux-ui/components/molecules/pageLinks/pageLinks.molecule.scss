@@ -1,0 +1,68 @@
+@import '../../../abstracts/abstracts.scss';
+
+@mixin setActiveStyles () {
+  text-align: center;
+  background-color: scale-color($beige, $lightness: -7%, $saturation: -10%);
+  color: $mainBlue;
+  font-weight: bold;
+}
+
+.page-links {
+  $root: &;
+
+  @include relative($z-index: pageLinks);
+
+  background-color: $beige;
+  margin: 0 0 40px 0;
+
+  @include atSmallMedium {
+    margin: 0 0 40px 20px;
+    width: 300px;
+    float: right;
+  }
+
+  @include e('title') {
+    margin: 0;
+    font-weight: normal;
+    text-align: center;
+    padding: 20px 0;
+    background-color: $mainBlue;
+    color: #fff;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      background-color: $mainBlue;
+    }
+  }
+
+  li {
+    border-top: 1px solid adjust-color($beige, $lightness: -14%);
+
+    &:first-child {
+      border-top: none;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      padding: 17px 10px;
+      text-decoration: none;
+      color: $mainBlue;
+      transition: all 0.3s;
+  
+      &:hover {
+        color: adjust-color($mainBlue, $lightness: -6%);
+        background-color: scale-color($beige, $lightness: -9%, $saturation: -12%);
+      }
+    }
+  }
+
+  @include e('active') {
+    @include setActiveStyles();
+  }
+
+  & .current_page_item {
+    @include setActiveStyles();
+  }
+}

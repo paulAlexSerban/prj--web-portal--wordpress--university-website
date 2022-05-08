@@ -1,0 +1,53 @@
+@import "../../../abstracts/abstracts.scss";
+
+.main-navigation {
+  padding-top: 2px;
+
+  @include atMedium {
+    float: left;
+    margin-right: 20px;
+  }
+
+  @include e("menu-list") {
+    padding: 0;
+    margin: 0;
+
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+    }
+
+    &:after {
+      clear: both;
+    }
+  }
+
+  @include e("menu-item") {
+    list-style: none;
+
+    @include atMedium {
+      float: left;
+      padding-left: 20px;
+    }
+
+    a {
+      display: block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 300;
+      @include atMedium {
+        display: inline-block;
+        padding: 0;
+      }
+    }
+
+    &.current-menu-item {
+      a,
+      a:hover {
+        color: $beige;
+      }
+    }
+  }
+}

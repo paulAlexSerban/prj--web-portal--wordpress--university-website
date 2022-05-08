@@ -1,29 +1,15 @@
-# Target `./build/wordpress/wp-content/themes/project-name/` directory structure
-assets (dir)
-      - css (dir) <-- FROM -- ./src/dist
-      - icons (dir) <-- FROM ./assets/icons/*
-      - js (dir) <-- FROM -- ./src/dist
-inc (dir) <-- FROM -- ./src/includes
-template-parts (dir)
-      - footer (dir)
-      - header (dir)
-      - navigation (dir)
-      - page (dir)
-      - post (dir)
-404.php
-archive.php
-comments.php
-footer.php
-front-page.php <-- FROM -- ./src/templates
-functions.php
-header.php
-index.php
-page.php
-README.txt
-rtl.css
-screenshot.png
-search.php
-searchform.php
-sidebar.php
-single.php
-style.css
+# University Website
+
+## Build Scripts Config
+
+## Requirements
+* NodeJS v12
+
+## Troubleshooting
+
+### npm install blocks to something like this- `npm install Error: rollbackFailedOptional`
+```
+npm config rm proxy
+npm config rm https-proxy
+npm config set registry https://registry.npmjs.org/
+```
