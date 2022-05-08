@@ -20,3 +20,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.18.1
+
+      - name: Install
+        run: npm run install:dependencies:ci
+
+      - name: Create Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to Production
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: production
+          folder: docs
