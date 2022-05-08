@@ -9,6 +9,9 @@
   },
   "scripts": {
     "test": "echo 'Error: no test specified'",
+    "//": "INSTALL",
+    "install:dependencies:dev": "npm install",
+    "install:dependencies:ci": "npm ci --omit=dev --ignore-scripts",
     "////":"DEPLOY",
     "prepare": "husky install"
   },
