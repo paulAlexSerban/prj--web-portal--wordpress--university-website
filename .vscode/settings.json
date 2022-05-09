@@ -1,6 +1,12 @@
 {
   "cSpell.words": [
     "bloginfo",
+    "postbuild",
+    "postversion",
+    "prebuild",
+    "preinstall",
+    "prestop",
+    "preversion",
     "Serban"
   ]
 }

@@ -24,10 +24,6 @@ jobs:
       - name: Install
         run: npm run install:dependencies:ci
 
-      - name: Create Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to Test
         uses: JamesIves/github-pages-deploy-action@4.1.1

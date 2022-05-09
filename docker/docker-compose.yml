@@ -1,14 +1,19 @@
-version: "3.6"
+version: "3.7"
 
 services:
   ######### WORDPRESS
   wordpress:
-    build: ./dockerfiles/wordpress/
-    image: wordpress:${WORDPRESS_VERSION:-latest}
+    build:
+      context: ../backend/cms/wordpress/
+      dockerfile: wordpress.Dockerfile
+    image: wordpress:${WORDPRESS_VERSION:-5.9.3}
     container_name: ${COMPOSE_PROJECT_NAME:-wordpress}
     volumes:
-      - ./php/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
-      - ${WORDPRESS_DATA_DIR:-../build/wordpress}:/var/www/html
+      - ${WORDPRESS_DATA_DIR:-../backend/cms/wordpress/dist}:/var/www/html
+      - ../backend/cms/wordpress/source/wp-content/plugins/:/var/www/html/wp-content/plugins
+      - ../backend/cms/wordpress/source/wp-content/mu-plugins/:/var/www/html/wp-content/mu-plugins
+      - ../backend/cms/wordpress/source/wp-content/required:/var/www/html/wp-content/themes/${PROJECT_NAME}
+      - ../assets/images/renditions/:/var/www/html/wp-content/uploads
     environment:
       - WORDPRESS_DB_NAME=${COMPOSE_PROJECT_NAME:-wordpress}
       - WORDPRESS_TABLE_PREFIX=${WORDPRESS_TABLE_PREFIX:-wp_}
@@ -24,11 +29,13 @@ services:
 
   ######## MYSQL
   mysql:
-    build: ./dockerfiles/mysql/
+    build:
+      context: ../backend/database/mysql
+      dockerfile: mysql.Dockerfile
     image: mariadb:${MARIADB_VERSION:-latest}
     container_name: ${COMPOSE_PROJECT_NAME}_mysql
     volumes:
-      - ../build/mysql:/var/lib/mysql
+      - ../backend/database/mysql/dist:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD:-password}
       - MYSQL_USER=${DATABASE_USER:-root}
@@ -38,6 +45,9 @@ services:
 
     ######### PHPMYADMIN
   phpmyadmin:
+    build:
+      context: ../backend/database/phpmyadmin
+      dockerfile: phpmyadmin.Dockerfile
     depends_on:
       - mysql
     image: phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION:-latest}

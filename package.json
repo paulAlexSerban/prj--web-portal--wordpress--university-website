@@ -8,12 +8,20 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo 'Error: no test specified'",
+    "test": "echo 'Error: no test specified - TODO - implement and set lint to start here'",
+    "check-env": "node -e 'console.log(process.env)' | grep npm",
     "//": "INSTALL",
     "install:dependencies:dev": "npm install",
     "install:dependencies:ci": "npm ci --omit=dev --ignore-scripts",
     "////": "DEPLOY",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "//////":"DOCKER",
+    "prebuild:compose":"docker-compose --env-file config.dev.env up --build --detach",
+    "build:compose":"docker-compose --env-file config.dev.env -f docker/docker-compose.yml -f docker/wp-auto-config.yml run --rm wp-auto-config",
+    "postbuild:compose":"bash backend/database/.bash load_database",
+    "start:compose":"npm run build:compose",
+    "prestop:compose":"bash backend/database/.bash save_database",
+    "stop:compose": "docker-compose --env-file config.dev.env -f docker/docker-compose.yml down --volumes --rmi all"
   },
   "repository": {
     "type": "git",
